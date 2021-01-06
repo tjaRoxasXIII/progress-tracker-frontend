@@ -8,7 +8,7 @@ import userReducer from './reducers/userReducer'
 import './index.css';
 import App from './App';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let store = createStore(userReducer, composeEnhancers(applyMiddleware(thunk)))
 
