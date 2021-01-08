@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import fetchUsers from './actions/fetchUsers'
 import Registration from './components/auth/Registration'
+import Login from './components/auth/Login'
+import Home from './containers/Home'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.css';
 
 class App extends React.Component {
@@ -15,7 +17,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Progress Tracking App</h1>
-        <Registration />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={"/"} component={Login} />
+            <Route exact path={"/signup"} component={Registration} />
+            <Route exact path={"/home"} component={Home} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
@@ -28,4 +36,4 @@ class App extends React.Component {
 // }
 
 
-export default connect(null, {fetchUsers})(App);
+export default connect(null)(App);
