@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
 
 class Registration extends Component {
 
@@ -16,17 +16,33 @@ class Registration extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        axios.post("http://localhost:3000/registrations", {
-            user: {
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password,
-                password_confirmation: this.state.password_confirmation
-            }},
-            { withCredentials: true }
-            )
-            .then(response => console.log("registration resp", response))
-            .catch(error => console.log("registration error", error) )
+        // axios.post("http://localhost:3000/registrations", {
+        //     user: {
+        //         name: this.state.name,
+        //         email: this.state.email,
+        //         password: this.state.password,
+        //         password_confirmation: this.state.password_confirmation
+        //     }},
+        //     { withCredentials: true }
+        //     )
+        //     .then(response => console.log("registration resp", response))
+        //     .catch(error => console.log("registration error", error) )
+        // debugger
+        const data = { user: {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            password_confirmation: this.state.password_confirmation
+            }
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }
+        fetch("http://localhost:3000/registrations", requestOptions, { withCredentials: true})
+            .then(response => response.json())
+            .then(data => this.props.dispatch({ type: 'CREATE_USER', user: data.user}))
     }
 
     handleOnChange = event => {
@@ -57,4 +73,4 @@ class Registration extends Component {
 
 }
 
-export default Registration
+export default connect()(Registration)
