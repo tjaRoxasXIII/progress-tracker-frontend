@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { signIn, signOut } from '../actions'
 
 class Login extends React.Component {
     state = {
@@ -24,12 +26,12 @@ class Login extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         }
-        fetch("http://localhost:3000/users", requestOptions)
+        fetch("http://localhost:3000/login", requestOptions)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 localStorage.setItem("token", data.token)
-                console.log(localStorage)
-                console.log(this.state)
+                this.props.signIn(data.user)
             })
     }
 
@@ -48,4 +50,10 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+const mapStateToProps = (state) => {
+    return {
+        isSignedIn: state.auth.isSignedIn
+    }
+}
+
+export default connect(mapStateToProps, { signIn, signOut })(Login)

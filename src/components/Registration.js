@@ -34,7 +34,7 @@ class Registration extends React.Component {
             .then(response => response.json())
             .then(data => {
                 localStorage.setItem("token", data.token)
-
+                
             })
     }
 

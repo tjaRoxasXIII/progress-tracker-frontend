@@ -1,16 +1,14 @@
 import React from 'react'
 import Login from './Login'
 // import Registration from './Registration'
+import { signIn } from '../actions'
+import { connect } from 'react-redux'
 
 class Home extends React.Component {
 
-    state = {
-        user: {}
-    }
 
     componentDidMount() {
         const token = localStorage.getItem('token')
-        console.log(this.state)
         if(token){
             fetch('http://localhost:3000/auto_login', {
                 headers: {
@@ -20,10 +18,7 @@ class Home extends React.Component {
             .then(resp => resp.json())
             .then(data => {
                 console.log(data)
-                this.setState({
-                    user: data
-                })
-                console.log(this.state)
+                this.props.signIn(data)
             })
         }
     }
@@ -31,12 +26,13 @@ class Home extends React.Component {
     render() {
         return (
             <div>
+                <h1>Progress Tracker</h1>
                 <Login />
-                Home
+                <p>No Account?  <a href="#">Sign up</a></p>
             </div>
         )
     }
 
 }
 
-export default Home
+export default connect(null, {signIn})(Home)
