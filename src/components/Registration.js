@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../actions'
+import { signUp } from '../actions'
 
 class Registration extends React.Component {
     state = {
@@ -32,14 +32,7 @@ class Registration extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         }
-        fetch("http://localhost:3000/users", requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                if (data.user) {
-                    localStorage.setItem("token", data.token)
-                    this.props.signIn(data.user)
-                }
-            })
+        this.props.signUp(requestOptions)
     }
 
     render() {
@@ -63,4 +56,4 @@ class Registration extends React.Component {
     }
 }
 
-export default connect(null, {signIn})(Registration)
+export default connect(null, {signUp})(Registration)

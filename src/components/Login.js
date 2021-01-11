@@ -26,12 +26,7 @@ class Login extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         }
-        fetch("http://localhost:3000/login", requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem("token", data.token)
-                this.props.signIn(data.user)
-            })
+        this.props.signIn(requestOptions)
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Goals from '../components/Goals'
 import { connect } from 'react-redux'
 import {  signOut } from '../actions'
 
@@ -13,7 +14,9 @@ class Profile extends Component {
         return (
             <div>
                 <button onClick={this.signOut} ><a href="/">Sign Out</a></button>
-                <h1>Welcome to your Profile, {this.props.user}!</h1>
+                <h1>Welcome back, {this.props.user}!</h1>
+                <h2>Here's where you're at today:</h2>
+                <Goals />
             </div>
         )
     }
