@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { signIn, signOut } from '../actions'
+import { signIn } from '../actions'
 
 class Login extends React.Component {
     state = {
@@ -36,23 +36,21 @@ class Login extends React.Component {
 
     render() {
         return(
-            <form onSubmit={this.handleOnSubmit}>
-                <label>Email: </label>
-                <input type="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
-                <br/>
-                <label>Password: </label>
-                <input type="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
-                <br/>
-                <input type="Submit"/>
-            </form>
+            <div>
+                <form onSubmit={this.handleOnSubmit}>
+                    <label>Email: </label>
+                    <input type="email" name="email" autoComplete="email" value={this.state.email} onChange={this.handleOnChange}/>
+                    <br/>
+                    <label>Password: </label>
+                    <input type="password" name="password" autoComplete="current-password" value={this.state.password} onChange={this.handleOnChange}/>
+                    <br/>
+                    <input type="Submit"/>
+                </form>
+            </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isSignedIn: state.auth.isSignedIn
-    }
-}
 
-export default connect(mapStateToProps, { signIn, signOut })(Login)
+
+export default connect(null, { signIn })(Login)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { signIn, signOut } from '../actions'
+import { signIn } from '../actions'
 
 class Registration extends React.Component {
     state = {
@@ -35,8 +35,10 @@ class Registration extends React.Component {
         fetch("http://localhost:3000/users", requestOptions)
             .then(response => response.json())
             .then(data => {
-                localStorage.setItem("token", data.token)
-
+                if (data.user) {
+                    localStorage.setItem("token", data.token)
+                    this.props.signIn(data.user)
+                }
             })
     }
 
@@ -44,16 +46,16 @@ class Registration extends React.Component {
         return(
             <form onSubmit={this.handleOnSubmit}>
                 <label>Name: </label>
-                <input type="name" name="name" value={this.state.name} onChange={this.handleOnChange}/>
+                <input type="name" name="name" required="required" autoComplete="given-name"value={this.state.name} onChange={this.handleOnChange}/>
                 <br/>
                 <label>Email: </label>
-                <input type="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
+                <input type="email" name="email" autoComplete="email" value={this.state.email} onChange={this.handleOnChange}/>
                 <br/>
                 <label>Password: </label>
-                <input type="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
+                <input type="password" name="password" autoComplete="new-password"value={this.state.password} onChange={this.handleOnChange}/>
                 <br/>
                 <label>Confirm Password:</label>
-                <input type="password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleOnChange}/>
+                <input type="password" name="password_confirmation" autoComplete="new-password"value={this.state.password_confirmation} onChange={this.handleOnChange}/>
                 <br/>
                 <input type="Submit"/>
             </form>
@@ -61,4 +63,4 @@ class Registration extends React.Component {
     }
 }
 
-export default connect(null, {signIn, signOut})(Registration)
+export default connect(null, {signIn})(Registration)

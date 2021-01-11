@@ -7,39 +7,17 @@ import { connect } from 'react-redux'
 
 class Home extends React.Component {
 
-
-    componentDidMount() {
-        const token = localStorage.getItem('token')
-        if(token){
-            fetch('http://localhost:3000/auto_login', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then(resp => resp.json())
-            .then(data => {
-                this.props.signIn(data)
-            })
-        }
-    }
-
-    signOut = () => {
-        this.props.signOut()
-        localStorage.removeItem('token')
-    }
-
     render() {
         return (
             <Router>
                 <div>
-                    <button onClick={this.signOut}>Sign Out</button>
                     <h1>Progress Tracker</h1>
                     
                     <Switch>
                         <Route exact path="/signup">
                             <Registration />
                         </Route>
-                        <Route path="/">
+                        <Route exact path="/home">
                             <Login />   
                             <p>No Account? <Link to="/signup">Sign up</Link></p>
                         </Route>
@@ -51,5 +29,6 @@ class Home extends React.Component {
     }
 
 }
+
 
 export default connect(null, {signIn, signOut})(Home)
