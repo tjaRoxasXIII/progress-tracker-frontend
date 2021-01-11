@@ -1,12 +1,12 @@
 export const signUp = (requestOptions) => {
     return (dispatch) => {
-        dispatch({ type: 'START_SIGN_IN'})
+        dispatch({ type: 'START_SIGN_UP'})
         fetch("http://localhost:3000/users", requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     if (data.user) {
                         localStorage.setItem("token", data.token)
-                        dispatch({ type: 'SIGN_IN', payload: data.user})
+                        this.props.signIn(data.user)
                     }
                 })
     }
@@ -24,6 +24,12 @@ export const signIn = (requestOptions) => {
                     }
                 })
         }
+}
+
+export const autoSignIn = (data) => {
+    return (dispatch) => {
+        dispatch({ type: 'SIGN_IN', payload: data})
+    }
 }
 
 export const signOut = () => {

@@ -2,7 +2,7 @@ import React from 'react'
 import Home from './Home'
 import Profile from './Profile'
 import { connect } from 'react-redux'
-import { signIn } from '../actions'
+import { autoSignIn } from '../actions'
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
 class App extends React.Component {
@@ -17,13 +17,14 @@ class App extends React.Component {
             })
             .then(resp => resp.json())
             .then(data => {
-                this.props.signIn(data)
+                this.props.autoSignIn(data)
+                
             })
         }
     }
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <Router>
                 <div>
@@ -62,4 +63,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {signIn})(App)
+export default connect(mapStateToProps, {autoSignIn})(App)

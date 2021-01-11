@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
-import Goals from '../components/Goals'
 import { connect } from 'react-redux'
 import {  signOut } from '../actions'
+// import GoalList from '../components/GoalList'
 
 class Profile extends Component {
-    
+    state = {
+        goals: []
+    }
+
+    // componentDidMount() {
+    //     fetch(`http://localhost:3000/users/${this.state.userId}/goals`)
+    //         .then(resp => resp.json())
+    //         .then(data => console.log(data))
+    //         // .then(data => this.setState({ goals: data.goals}))
+    // }
+
     signOut = () => {
         this.props.signOut()
         localStorage.removeItem('token')
@@ -14,9 +24,9 @@ class Profile extends Component {
         return (
             <div>
                 <button onClick={this.signOut} ><a href="/">Sign Out</a></button>
-                <h1>Welcome back, {this.props.user}!</h1>
+                <h1>Welcome, {this.props.name}!</h1>
                 <h2>Here's where you're at today:</h2>
-                <Goals />
+                {/* <GoalList goals={this.state.goals}/> */}
             </div>
         )
     }
@@ -24,7 +34,8 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.auth.name
+        name: state.auth.name,
+        userId: state.auth.userId
     }
 }
 
