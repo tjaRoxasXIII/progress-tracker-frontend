@@ -1,7 +1,7 @@
 import React from 'react'
 import Login from './Login'
 // import Registration from './Registration'
-import { signIn } from '../actions'
+import { signIn, signOut } from '../actions'
 import { connect } from 'react-redux'
 
 class Home extends React.Component {
@@ -23,16 +23,22 @@ class Home extends React.Component {
         }
     }
 
+    signOut = () => {
+        this.props.signOut()
+        localStorage.removeItem('token')
+    }
+
     render() {
         return (
             <div>
                 <h1>Progress Tracker</h1>
                 <Login />
-                <p>No Account?  <a href="#">Sign up</a></p>
+                <p>No Account? Sign up</p>
+                <button onClick={this.signOut}>Sign Out</button>
             </div>
         )
     }
 
 }
 
-export default connect(null, {signIn})(Home)
+export default connect(null, {signIn, signOut})(Home)
