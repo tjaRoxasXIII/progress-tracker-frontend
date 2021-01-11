@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { signIn, signOut } from '../actions'
 
 class Registration extends React.Component {
     state = {
@@ -34,7 +36,7 @@ class Registration extends React.Component {
             .then(response => response.json())
             .then(data => {
                 localStorage.setItem("token", data.token)
-                
+
             })
     }
 
@@ -59,4 +61,4 @@ class Registration extends React.Component {
     }
 }
 
-export default Registration
+export default connect(null, {signIn, signOut})(Registration)
