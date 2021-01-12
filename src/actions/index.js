@@ -37,3 +37,9 @@ export const signOut = () => {
         type: 'SIGN_OUT'
     }
 }
+
+export const addGoal = (requestOptions) => {
+    return () => {
+        fetch("http://localhost:3000/goals", requestOptions)     
+    }
+}

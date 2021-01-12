@@ -1,22 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {  signOut } from '../actions'
+import { fetchGoals } from '../actions/goalsActions'
 import GoalList from '../components/GoalList'
 
 class Profile extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            goals: []
-        }
-    }
 
     componentDidMount() {
-        fetch(`http://localhost:3000/users/${this.props.userId}/goals`)
-            .then(resp => resp.json())
-            // .then(data => console.log(data))
-            .then(data => this.setState({ goals: data}))
+        this.props.fetchGoals(this.props.userId)
     }
 
     signOut = () => {
@@ -25,7 +16,7 @@ class Profile extends Component {
     }
 
     goalsExist = () => {
-        if (!this.state.goals.length) {
+        if (!this.props.goals.length) {
             return (
                 <div className="card text-white bg-info mb-3" style={{marginLeft: 30, maxWidth: 250}}>
                     <h3>No Goals?</h3>
@@ -34,7 +25,7 @@ class Profile extends Component {
             )
         }
         else {
-            return <GoalList goals={this.state.goals}/>
+            return <GoalList goals={this.props.goals}/>
         }
     }
 
@@ -42,8 +33,8 @@ class Profile extends Component {
         return (
             <div>
                 <button onClick={this.signOut} ><a href="/">Sign Out</a></button>
-                <h1>Welcome, {this.props.name}!</h1>
-                <h2>Here's where you're at today:</h2>
+                <h1 className="card text-white bg-secondary mb-3">Welcome, {this.props.name}!</h1>
+                <h1>Here's where you're at today:</h1>
                 <h3>Add a new goal: <button><a href="/profile/new_goal">+</a></button></h3>
                 
                 {this.goalsExist()}
@@ -55,8 +46,9 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
     return {
         name: state.auth.name,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        goals: state.goals
     }
 }
 
-export default connect(mapStateToProps, { signOut })(Profile)
+export default connect(mapStateToProps, { signOut, fetchGoals })(Profile)
