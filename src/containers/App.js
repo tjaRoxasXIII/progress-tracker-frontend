@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from './Home'
 import Profile from './Profile'
+import AddGoal from '../components/AddGoal'
 import { connect } from 'react-redux'
 import { autoSignIn } from '../actions'
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
@@ -24,7 +25,6 @@ class App extends React.Component {
     }
 
     render() {
-        // console.log(this.props)
         return(
             <Router>
                 <div>
@@ -48,6 +48,7 @@ class App extends React.Component {
                             ) 
                         }}
                         />
+                        <Route exact path="/profile/new_goal" component={AddGoal} />
                     </Switch>
                 </div>
             </Router>

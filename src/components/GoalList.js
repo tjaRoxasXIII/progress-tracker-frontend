@@ -3,9 +3,9 @@ import Goal from './Goal'
 
 
 const GoalList = ({ goals }) => (
-    <div className="Goal-list">
-        { goals.map(goal => <Goal title={goal.title} description={goal.description} />) }
-    </div>
+        <div >
+            { goals.map(goal => <Goal title={goal.title} description={goal.description} />) }
+        </div>
 
 )
 
