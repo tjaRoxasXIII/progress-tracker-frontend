@@ -37,21 +37,21 @@ class Registration extends React.Component {
 
     render() {
         return(
-            <form onSubmit={this.handleOnSubmit}>
-                <label>Name: </label>
-                <input type="name" name="name" required="required" autoComplete="given-name"value={this.state.name} onChange={this.handleOnChange}/>
-                <br/>
-                <label>Email: </label>
-                <input type="email" name="email" autoComplete="email" value={this.state.email} onChange={this.handleOnChange}/>
-                <br/>
-                <label>Password: </label>
-                <input type="password" name="password" autoComplete="new-password"value={this.state.password} onChange={this.handleOnChange}/>
-                <br/>
-                <label>Confirm Password:</label>
-                <input type="password" name="password_confirmation" autoComplete="new-password"value={this.state.password_confirmation} onChange={this.handleOnChange}/>
-                <br/>
-                <input type="Submit"/>
-            </form>
+            <div className="card-body">
+                <h3>We'll keep it simple! Just add:</h3>
+                <form onSubmit={this.handleOnSubmit}>
+                    <label>Name: (Or whatever you'd like to be called)</label><br/>
+                    <input type="name" name="name" required="required" autoComplete="given-name"value={this.state.name} onChange={this.handleOnChange}/><br/>
+                    <label>Email: </label><br/>
+                    <input type="email" name="email" required="required" autoComplete="email" value={this.state.email} onChange={this.handleOnChange}/><br/>
+                    <label>Password: </label><br/>
+                    <input type="password" name="password" required="required" autoComplete="new-password"value={this.state.password} onChange={this.handleOnChange}/><br/>
+                    <label>Confirm Password:</label><br/>
+                    <input type="password" name="password_confirmation" required="required" autoComplete="new-password"value={this.state.password_confirmation} onChange={this.handleOnChange}/><br/><br/>
+                    
+                    <input type="Submit"/>
+                </form>
+            </div>
         )
     }
 }

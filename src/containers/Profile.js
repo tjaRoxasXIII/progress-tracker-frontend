@@ -20,7 +20,7 @@ class Profile extends Component {
             return (
                 <div className="card text-white bg-info mb-3" style={{marginLeft: 30, maxWidth: 250}}>
                     <h3>No Goals?</h3>
-                    <h3>No Problem!</h3>
+                    <h3>No Problem! Just click the button above to get started!</h3>
                 </div>
             )
         }
@@ -32,8 +32,8 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.signOut} ><a href="/">Sign Out</a></button>
                 <h1 className="card text-white bg-secondary mb-3">Welcome, {this.props.name}!</h1>
+                <button onClick={this.signOut} ><a href="/">Sign Out</a></button>
                 <h1>Here's where you're at today:</h1>
                 <h3>Add a new goal: <button><a href="/profile/new_goal">+</a></button></h3>
                 

@@ -27,7 +27,7 @@ class App extends React.Component {
     render() {
         return(
             <Router>
-                <div>
+                <div align="center">
                     <Switch>
                         <Route exact path="/">
                             <Redirect to="/home"/>

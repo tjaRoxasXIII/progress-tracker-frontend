@@ -11,7 +11,7 @@ class Home extends React.Component {
         return (
             <Router>
                 <div>
-                    <h1>Progress Tracker</h1>
+                    <h1 className="card-header text-white bg-dark">Progress Tracker</h1>
                     
                     <Switch>
                         <Route exact path="/signup">
@@ -19,7 +19,7 @@ class Home extends React.Component {
                         </Route>
                         <Route exact path="/home">
                             <Login />   
-                            <p>No Account? <Link to="/signup">Sign up</Link></p>
+                            <p className="card-body">No Account? <Link to="/signup">Sign up</Link></p>
                         </Route>
                     </Switch>
                 </div>

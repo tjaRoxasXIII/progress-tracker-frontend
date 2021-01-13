@@ -1,5 +1,3 @@
-import { Redirect } from "react-router"
-
 const API = "http://localhost:3000"
 
 export const addGoal = (goalState, userId) => {
@@ -26,5 +24,24 @@ export const fetchGoals = (userId) => {
                 type: 'GET_GOALS',
                 payload: data
             }))
+    }
+}
+
+export const increaseProgress = (currentId, currentUserId) => {
+    console.log(currentId, currentUserId)
+    const body = {
+        goal: {
+            user_id: currentUserId,
+            id: currentId
+        }
+    }
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    }
+    return dispatch => {
+        fetch(API + '/update_goal', requestOptions)
+        .then(resp => console.log(resp))
     }
 }

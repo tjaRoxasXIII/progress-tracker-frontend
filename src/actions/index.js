@@ -6,7 +6,7 @@ export const signUp = (requestOptions) => {
                 .then(data => {
                     if (data.user) {
                         localStorage.setItem("token", data.token)
-                        this.props.signIn(data.user)
+                        dispatch({type: 'SIGN_IN', payload: data.user})
                     }
                 })
     }
@@ -21,6 +21,9 @@ export const signIn = (requestOptions) => {
                     if (data.user) {
                         localStorage.setItem("token", data.token)
                         dispatch({ type: 'SIGN_IN', payload: data.user})
+                    }
+                    else {
+                        alert("No User found")
                     }
                 })
         }
@@ -38,8 +41,3 @@ export const signOut = () => {
     }
 }
 
-export const addGoal = (requestOptions) => {
-    return () => {
-        fetch("http://localhost:3000/goals", requestOptions)     
-    }
-}
