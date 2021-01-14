@@ -27,7 +27,7 @@ class Goal extends React.Component {
             <ProgressBar  variant="success" now={this.calculateProgress()}/>            
             <h5>Start: {this.props.start_date} --- End: {this.props.end_date}</h5>
             <h4>Completed: {this.props.numOfComplete} / {this.props.numToComplete}</h4>
-            <button disabled> Complete! </button><br/>
+            <button className="goal-complete" disabled> Complete! </button><br/>
         </div>
         }
         else {
@@ -36,7 +36,7 @@ class Goal extends React.Component {
             <h3 className="card-body">{ this.props.description } </h3>
             <ProgressBar animated variant="warning" now={this.calculateProgress()}/>
             <h4>Completed: {this.props.numOfComplete} / {this.props.numToComplete}</h4>
-            <button onClick={() => this.props.increaseProgress(this.props.id, this.props.user_id)}>Complete a task</button><br/>
+            <button className="goal-update" onClick={() => this.props.increaseProgress(this.props.id, this.props.user_id)}>Complete a task</button><br/>
         </div>
         }
 

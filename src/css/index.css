@@ -19,3 +19,17 @@
 .material-icons:hover {
     color: red;
 }
+
+.goal-update {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.goal-complete {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+button.goal-update:hover {
+    background-color: rgb(209, 205, 205);
+}
