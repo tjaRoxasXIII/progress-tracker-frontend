@@ -27,12 +27,26 @@ export const fetchGoals = (userId) => {
     }
 }
 
-export const increaseProgress = (currentId, currentUserId) => {
-    console.log(currentId, currentUserId)
+export const deleteGoal = (goalId, currentUserId) => {
+    return dispatch => {
+        fetch(API + `/goals/${goalId}`, { method: 'DELETE' })
+        .then(resp => console.log(resp))
+        .then(data => {
+            fetch(API + `/users/${currentUserId}/goals` )
+            .then(resp => resp.json())
+            .then(data => dispatch({
+                type: 'GET_GOALS',
+                payload: data
+            }))
+        })
+    }
+}
+
+export const increaseProgress = (goalId, currentUserId) => {
     const body = {
         goal: {
             user_id: currentUserId,
-            id: currentId
+            id: goalId
         }
     }
     const requestOptions = {
@@ -43,5 +57,13 @@ export const increaseProgress = (currentId, currentUserId) => {
     return dispatch => {
         fetch(API + '/update_goal', requestOptions)
         .then(resp => console.log(resp))
+        .then(data => {
+            fetch(API + `/users/${currentUserId}/goals` )
+            .then(resp => resp.json())
+            .then(data => dispatch({
+                type: 'GET_GOALS',
+                payload: data
+            }))
+        })
     }
 }

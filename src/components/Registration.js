@@ -38,7 +38,7 @@ class Registration extends React.Component {
     render() {
         return(
             <div className="card-body">
-                <h3>We'll keep it simple! Just add:</h3>
+                <h3>We'll keep it simple! Just add your:</h3>
                 <form onSubmit={this.handleOnSubmit}>
                     <label>Name: (Or whatever you'd like to be called)</label><br/>
                     <input type="name" name="name" required="required" autoComplete="given-name"value={this.state.name} onChange={this.handleOnChange}/><br/>

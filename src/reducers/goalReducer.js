@@ -7,7 +7,6 @@ export default (state = INITIAL_STATE, action) => {
         case 'GET_GOALS':
             console.log(action.payload, "Grabbing Goals")
             return action.payload
-
         default:
             return state
     }

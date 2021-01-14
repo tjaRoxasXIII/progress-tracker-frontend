@@ -32,7 +32,7 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <h1 className="card text-white bg-secondary mb-3">Welcome, {this.props.name}!</h1>
+                <h1 className="card text-white bg-dark mb-3">Welcome, {this.props.name}!</h1>
                 <button onClick={this.signOut} ><a href="/">Sign Out</a></button>
                 <h1>Here's where you're at today:</h1>
                 <h3>Add a new goal: <button><a href="/profile/new_goal">+</a></button></h3>
