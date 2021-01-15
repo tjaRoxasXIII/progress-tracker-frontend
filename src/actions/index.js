@@ -8,6 +8,15 @@ export const signUp = (requestOptions) => {
                         localStorage.setItem("token", data.token)
                         dispatch({type: 'SIGN_IN', payload: data.user})
                     }
+                    else {
+                        console.log(data)
+                        if (data.email) {
+                            alert(`This email address ${data.email}`)
+                        }
+                        else {
+                            alert(`Your Password and Password Confirmation fields do not match.`)
+                        }
+                    }
                 })
     }
 }
