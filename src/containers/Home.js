@@ -12,8 +12,9 @@ class Home extends React.Component {
             <Router>
                 <div>
                     <h1 className="card-header text-white bg-dark">Progress Tracker</h1>
+                    <h3 className="card-header text-white bg-info">Your Goals. Your Way.</h3>
                     <blockquote className="blockquote">
-                        <h4>"Don't just set it and forget it. Keep yourself accountable!"</h4>
+                        <h4>"Don't just set them and forget them. Keep yourself accountable!"</h4>
                     </blockquote>
                     <Switch>
                         <Route exact path="/signup">
