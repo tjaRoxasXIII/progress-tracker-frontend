@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     isLoggingIn: false
 }
 
-export default (state = INITIAL_STATE, action) => {
+export default function authReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'START_SIGN_IN':
             console.log("Starting login")

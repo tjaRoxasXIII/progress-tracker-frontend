@@ -34,9 +34,9 @@ class Login extends React.Component {
             <div className="card-body ">
                 <form onSubmit={this.handleOnSubmit}>
                     <label>Email: </label><br/>
-                    <input type="email" name="email" autoComplete="email" value={this.state.email} onChange={this.handleOnChange}/><br/>
+                    <input type="email" name="email" required="required" autoComplete="email" value={this.state.email} onChange={this.handleOnChange}/><br/>
                     <label>Password: </label><br/>
-                    <input type="password" name="password" autoComplete="current-password" value={this.state.password} onChange={this.handleOnChange}/><br/><br/>
+                    <input type="password" name="password" required = "required" autoComplete="current-password" value={this.state.password} onChange={this.handleOnChange}/><br/><br/>
                     <input type="Submit"/>
                 </form>
             </div>
