@@ -11,7 +11,7 @@ export const addGoal = (goalState, userId) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
     }
-    return dispatch => {
+    return () => {
         fetch(API + '/goals', requestOptions)
     }
 }
@@ -30,8 +30,8 @@ export const fetchGoals = (userId) => {
 export const deleteGoal = (goalId, currentUserId) => {
     return dispatch => {
         fetch(API + `/goals/${goalId}`, { method: 'DELETE' })
-        .then(resp => console.log(resp))
-        .then(data => {
+        .then(resp => resp)
+        .then(() => {
             fetch(API + `/users/${currentUserId}/goals` )
             .then(resp => resp.json())
             .then(data => dispatch({

@@ -32,13 +32,13 @@ class AddGoal extends React.Component {
     render() {
         return (
             <div>
-                <h2>Let's add a new goal:</h2>
+                <h2 className="card-header bg-info">Let's add a new goal:</h2>
                 <form onSubmit={this.handleOnSubmit}>
-                    <label>Title</label>
+                    <label>Title:</label><br />
                     <input type="text" name="title" required="required" onChange={this.handleOnChange} value={this.state.title}/><br />
-                    <label>Description</label>
+                    <label>Description:</label><br />
                     <input type="text" name="description" onChange={this.handleOnChange} value={this.state.description}/><br />
-                    <label>Frequency</label>
+                    <label>Frequency:</label><br />
                     <select name="frequency" onChange={this.handleOnChange} value={this.state.frequency}>
                         <option value="daily">Daily</option>
                         <option value="weekly">Weekly</option>
@@ -48,10 +48,10 @@ class AddGoal extends React.Component {
                         <option value="semi-annually">Semi-Annually</option>
                         <option value="annually">Annually</option>
                     </select><br/>
-                    <label>Start Date:</label>
+                    <label>Start Date:</label><br />
                     <input type="date" name="start_date" required="required" onChange={this.handleOnChange} value={this.state.startDate}/><br />
-                    <label>End Date:</label>
-                    <input type="date" name="end_date" required="required" onChange={this.handleOnChange} value={this.state.endDate}/><br />
+                    <label>End Date:</label><br />
+                    <input type="date" name="end_date" required="required" onChange={this.handleOnChange} value={this.state.endDate}/><br /><br />
                     <input type="submit" />
                 </form>
             </div>

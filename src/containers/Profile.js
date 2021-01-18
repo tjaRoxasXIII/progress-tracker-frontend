@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {  signOut } from '../actions'
 import { fetchGoals } from '../actions/goalsActions'
+import { Link } from 'react-router-dom'
 import GoalList from '../components/GoalList'
 
 class Profile extends Component {
@@ -31,20 +32,21 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
-                <h1 className="card-header text-white bg-dark">Welcome, {this.props.name}!</h1>
-                <button onClick={this.signOut} style={{float: 'right'}}><a href="/">Sign Out</a></button>
-                <h1>Here's where you're at today:</h1>
-                <h3>Add a new goal - <button><a href="/profile/new_goal">+</a></button></h3>
-                
-                {this.goalsExist()}
-            </div>
+                <div>
+                    <h1 className="card-header text-white bg-dark">Welcome, {this.props.name}!</h1>
+                    <button onClick={this.signOut} style={{float: 'right'}}><a href="/">Sign Out</a></button>
+                    <h1>Here's where you're at today:</h1>
+                    {console.log(this.props)}
+                    <h3>Add a new goal - <button><Link to="/profile/new_goal">+</Link></button></h3>
+                    {this.goalsExist()}
+                </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        isSignedIn: state.auth.isSignedIn,
         name: state.auth.name,
         userId: state.auth.userId,
         goals: state.goals
