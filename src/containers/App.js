@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from './Home'
+import Registration from '../components/Registration'
 import Profile from './Profile'
 import AddGoal from '../components/AddGoal'
 import { connect } from 'react-redux'
@@ -39,14 +40,15 @@ class App extends React.Component {
                             return ( <Redirect to="/home"/> )
                         }} />}
                         {this.props.isSignedIn === true && <Route exact path="/home" render={() => {
-                        return(
-                            <Redirect to="/profile" />
-                                )}
-                            } />
-                        }
+                        return ( <Redirect to="/profile" /> )
+                        }} />}
+                        {this.props.isSignedIn === true && <Route exact path="/signup" render={() => {
+                        return ( <Redirect to="/profile" /> )
+                        }} />}
                         {this.props.isSignedIn === true && <Route exact path="/profile" component={Profile} />}
                         {this.props.isSignedIn === true && <Route exact path="/profile/new_goal" component={AddGoal} />}
                         {this.props.isSignedIn === false && <Route exact path="/home" component={Home} />}
+                        {this.props.isSignedIn === false && <Route exact path="/signup" component={Registration} />}
                     </Switch>
                 </div>
             </Router>

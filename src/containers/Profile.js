@@ -36,7 +36,6 @@ class Profile extends Component {
                     <h1 className="card-header text-white bg-dark">Welcome, {this.props.name}!</h1>
                     <button onClick={this.signOut} style={{float: 'right'}}><a href="/">Sign Out</a></button>
                     <h1>Here's where you're at today:</h1>
-                    {console.log(this.props)}
                     <h3>Add a new goal - <button><Link to="/profile/new_goal">+</Link></button></h3>
                     {this.goalsExist()}
                 </div>
